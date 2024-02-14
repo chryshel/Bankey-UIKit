@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //making it key and visible
         window?.makeKeyAndVisible()
         //setting a background color
-        window?.backgroundColor = .orange
+        window?.backgroundColor = .systemBackground
         //setting the ViewController as the rootview controller in our AppDelegate
         window?.rootViewController = LoginViewController()
         

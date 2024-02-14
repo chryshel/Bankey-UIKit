@@ -5,7 +5,7 @@
 import Foundation
 import UIKit
 
-class ExampleViewName: UIView {
+class LoginView: UIView {
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -22,10 +22,11 @@ class ExampleViewName: UIView {
         return CGSize(width: 200, height: 200)
     }
 }
-extension ExampleViewName {
+extension LoginView {
     
     func style(){
         translatesAutoresizingMaskIntoConstraints = true
+        backgroundColor = .red
     }
     func layout(){
         
