@@ -1,9 +1,6 @@
-//
 //  ViewController.swift
 //  Bankey
-//
 //  Created by chryshel fonseka on 2024-02-13.
-//
 
 import UIKit
 
@@ -12,6 +9,14 @@ class LoginViewController: UIViewController {
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMsgLable = UILabel()
+    
+    var username: String? {
+        return loginView.userNameTextField.text
+    }
+    
+    var password: String? {
+        return loginView.userPasswordTextField.text
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +40,7 @@ extension LoginViewController {
         errorMsgLable.textAlignment = .center
         errorMsgLable.textColor = .systemRed
         errorMsgLable.numberOfLines = 0
-        errorMsgLable.text = "Error Message"
-        errorMsgLable.isHidden = false
+        errorMsgLable.isHidden = true
     }
     
     private func layout() {
@@ -71,6 +75,30 @@ extension LoginViewController {
 
 extension LoginViewController{
    @objc func signInTapped(sender: UIButton){
+       errorMsgLable.isHidden = true
+       login()
+    }
+    
+    private func login(){
+        guard let username = username, let password = password else {
+            assertionFailure("Username / password should nerver be nil")
+            return
+        }
+        if username.isEmpty || password.isEmpty {
+            configureView(withMessage: "Username / Password cannot be empty")
+            return
+        }
         
+        if username == "chryshel" && password == "password" {
+            signInButton.configuration?.showsActivityIndicator = true
+        }else {
+            configureView(withMessage: "Incorrect Username / Password")
+            return
+        }
+    }
+    
+    private func configureView(withMessage message: String){
+        errorMsgLable.isHidden = false
+        errorMsgLable.text = message
     }
 }
