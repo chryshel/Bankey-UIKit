@@ -22,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .systemBackground
         //setting the ViewController as the rootview controller in our AppDelegate
         // window?.rootViewController = LoginViewController()
-        //window?.rootViewController = OnboardingContainerViewController()
-        window?.rootViewController = OnboardingViewController()
+        window?.rootViewController = OnboardingContainerViewController()
         
         return true
     }
