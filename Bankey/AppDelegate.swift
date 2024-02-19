@@ -1,9 +1,7 @@
-//
-//  AppDelegate.swift
+ //  AppDelegate.swift
 //  Bankey
-//
 //  Created by chryshel fonseka on 2024-02-13.
-//
+
 
 import UIKit
 
@@ -31,8 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //setting the ViewController as the rootview controller in our AppDelegate
         window?.rootViewController = loginViewController
-      
-        //window?.rootViewController = OnboardingContainerViewController()
+
         
         return true
     }

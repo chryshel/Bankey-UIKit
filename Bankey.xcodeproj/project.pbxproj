@@ -62,11 +62,11 @@
 		71DC98922B7B9DBF001AF6DE /* Bankey */ = {
 			isa = PBXGroup;
 			children = (
+				71DC98932B7B9DBF001AF6DE /* AppDelegate.swift */,
+				71DC98A82B7BA758001AF6DE /* Login */,
+				71DC98AB2B807019001AF6DE /* Onboarding */,
 				71DC98B22B838F2A001AF6DE /* Utils */,
 				71DC98A72B7BA700001AF6DE /* Files */,
-				71DC98AB2B807019001AF6DE /* Onboarding */,
-				71DC98A82B7BA758001AF6DE /* Login */,
-				71DC98932B7B9DBF001AF6DE /* AppDelegate.swift */,
 			);
 			path = Bankey;
 			sourceTree = "<group>";
