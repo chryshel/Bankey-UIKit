@@ -60,8 +60,13 @@ extension AppDelegate {
 
 extension AppDelegate: LonginViewControllerDelegate {
     func didLogin() {
-        print("Login Complete ")
-        setRootViewController(onboardingContainerViewController)
+        if LocalState.hasOnboarded {
+            setRootViewController(dummyViewController)
+        }else{
+            setRootViewController(onboardingContainerViewController)
+        }
+        
+       
     }
 
 }
@@ -69,6 +74,7 @@ extension AppDelegate: LonginViewControllerDelegate {
 extension AppDelegate: OnboardingContainerViewControllerDelegate {
     func didFinishOnBoarding() {
         print("Did Finish Onboarding")
+        LocalState.hasOnboarded = true
         setRootViewController(dummyViewController)
     }
 }
