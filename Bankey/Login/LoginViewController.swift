@@ -4,11 +4,24 @@
 
 import UIKit
 
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
+
+protocol LonginViewControllerDelegate: AnyObject {
+    func didLogin()
+    
+}
+
 class LoginViewController: UIViewController {
     
+    let appTitle = UILabel()
+    let appSubTitle = UILabel()
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
     let errorMsgLable = UILabel()
+    
+    weak var delegate: LonginViewControllerDelegate?
     
     var username: String? {
         return loginView.userNameTextField.text
@@ -24,10 +37,26 @@ class LoginViewController: UIViewController {
         layout()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        signInButton.configuration?.showsActivityIndicator = false
+    }
+    
 }
 
 extension LoginViewController {
     private func style() {
+        
+        appTitle.translatesAutoresizingMaskIntoConstraints = false
+        appTitle.text = "Bankey"
+        appTitle.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        appTitle.textColor = .black
+        
+        appSubTitle.translatesAutoresizingMaskIntoConstraints = false
+        appSubTitle.text = "Your premium source for all things banking!"
+        appSubTitle.font = UIFont.preferredFont(forTextStyle: .title3)
+        appSubTitle.textColor = .black
+        
         loginView.translatesAutoresizingMaskIntoConstraints = false
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -44,9 +73,26 @@ extension LoginViewController {
     }
     
     private func layout() {
+        view.addSubview(appTitle)
+        view.addSubview(appSubTitle)
         view.addSubview(loginView)
         view.addSubview(signInButton)
         view.addSubview(errorMsgLable)
+        
+        
+        // Title Text View
+        NSLayoutConstraint.activate([
+            appSubTitle.topAnchor.constraint(equalToSystemSpacingBelow: appTitle.bottomAnchor, multiplier: 3),
+            appTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+
+        ])
+        
+        // Sub Title Text View
+        NSLayoutConstraint.activate([
+            loginView.topAnchor.constraint(equalToSystemSpacingBelow: appSubTitle.bottomAnchor, multiplier: 3),
+            appSubTitle.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            appSubTitle.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
         
         // LoginView
         NSLayoutConstraint.activate([
@@ -84,13 +130,14 @@ extension LoginViewController{
             assertionFailure("Username / password should nerver be nil")
             return
         }
-        if username.isEmpty || password.isEmpty {
-            configureView(withMessage: "Username / Password cannot be empty")
-            return
-        }
+//        if username.isEmpty || password.isEmpty {
+//            configureView(withMessage: "Username / Password cannot be empty")
+//            return
+//        }
         
-        if username == "chryshel" && password == "password" {
+        if username == "" && password == "" {
             signInButton.configuration?.showsActivityIndicator = true
+            delegate?.didLogin()
         }else {
             configureView(withMessage: "Incorrect Username / Password")
             return
