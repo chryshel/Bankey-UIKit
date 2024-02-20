@@ -1,9 +1,11 @@
- //  AppDelegate.swift
+//  AppDelegate.swift
 //  Bankey
 //  Created by chryshel fonseka on 2024-02-13.
 
 
 import UIKit
+
+let appColor: UIColor = .systemTeal
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loginViewController = LoginViewController()
     let onboardingContainerViewController = OnboardingContainerViewController()
     let dummyViewController = DummyViewController()
+    let mainViewController = MainViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -29,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //setting the ViewController as the rootview controller in our AppDelegate
         window?.rootViewController = loginViewController
+        
+        window?.rootViewController = mainViewController
 
         
         return true
