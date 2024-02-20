@@ -1,8 +1,8 @@
- //  AppDelegate.swift
+//  AppDelegate.swift
 //  Bankey
 //  Created by chryshel fonseka on 2024-02-13.
 
-
+ 
 import UIKit
 
 @main
